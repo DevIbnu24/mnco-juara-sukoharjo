@@ -1,0 +1,21 @@
+// Tabel untuk menyimpan data Tentang Kami & Kontak (Hanya butuh 1 baris data)
+model WebSetting {
+  id            String   @id @default(uuid())
+  aboutText     String   @db.Text // Teks sejarah/tentang MNCo
+  addressPusat  String   @db.Text // Alamat Sukoharjo
+  addressCabang String   @db.Text // Alamat Semarang
+  waNumber      String            // Nomor WhatsApp
+  updatedAt     DateTime @updatedAt
+}
+
+// Tabel untuk menyimpan Artikel Insight
+model Insight {
+  id          String   @id @default(uuid())
+  title       String
+  category    String
+  excerpt     String   @db.Text
+  content     String   @db.Text
+  imageUrl    String?  // Gambar opsional
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

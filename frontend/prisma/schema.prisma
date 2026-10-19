@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Menggunakan SQLite untuk database lokal yang ringan
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Tabel untuk mengatur Layanan Perusahaan MNCo
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String   
+  description String   
+  icon        String?  
+  createdAt   DateTime @default(now())
+}
+
+// Tabel untuk menyimpan data Tentang Kami & Kontak (Pengaturan Web)
+model WebSetting {
+  id            String   @id @default(uuid())
+  heroTitle     String   @default("") // Judul Utama Beranda
+  heroSubtitle  String   @default("") // Sub-judul Beranda
+  aboutText     String
+  addressPusat  String
+  addressCabang String
+  waNumber      String
+  waConsultant  String   @default("")
+  updatedAt     DateTime @updatedAt
+}
+
+// Tabel untuk menyimpan Artikel Insight
+model Insight {
+  id          String   @id @default(uuid())
+  title       String
+  category    String
+  excerpt     String
+  content     String
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Tabel untuk Struktur Organisasi / Tim Ahli
+model TeamMember {
+  id          String   @id @default(uuid())
+  name        String
+  credentials String?  // Gelar (opsional, bisa kosong)
+  role        String   // Jabatan (misal: Partner, Manager)
+  category    String   // Kelompok (misal: Managing Partner, Manajemen Inti)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
